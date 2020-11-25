@@ -17,7 +17,9 @@ const {
 } = q;
 
 module.exports = (req, res) => {
-
-
-    
+  client
+  .query(Get(Ref(Collection("films"), req.body.slug)))
+  .then(result => {
+    res.send(result)
+  })
 }

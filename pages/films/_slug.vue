@@ -1,15 +1,26 @@
 <template>
   <div>
-    Это слаг
-  <h1>{{ this.slug }}</h1>
+  <h1>{{ filmData }}</h1>
   </div>
 </template>
 
 <script>
   export default {
-    async asyncData({ params }) {
-      const slug = params.slug 
-      return { slug }
+    data() {
+      return{
+        filmData: [],
+      };
+    },
+    async oneFilm({params}) {
+      const slug = params.slug
+      const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug })
+    };
+      const res = await fetch("http://localhost:3000/api/actors/currentfilm", requestOptions)
+      const filmData = await res.json();
+      this.filmData = filmData;
     }
   }
 </script>

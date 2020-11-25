@@ -7,22 +7,16 @@
           {{film.data.title.Title}}
         </a>
       </li>
-      <!--- <nuxt-link :to=`/films/${film.data.ref['@ref'].id}`  >
-        {{film.data.title.Title}} <br>
-      </nuxt-link>  --->
     </ul>
   </div>
 </div>
 </template>
 
 <script>
-
 export default {
-
     name: "app",
     methods: {
       actorLink(id) {
-        // console.log('id :>> ', id.ref['@ref'].id);
         return `/films/${ id.ref['@ref'].id }`
       }
     },
@@ -32,7 +26,6 @@ export default {
         id: ""
       };
     },
-
     async mounted() {
       const res = await fetch(
         "http://localhost:3000/api/actors/films"
@@ -44,11 +37,9 @@ export default {
       console.log(userId)
     }
    }
-
 </script>
 
 <style>
-
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -57,5 +48,4 @@ export default {
   align-items: center;
   text-align: center;
 }
-
 </style>
