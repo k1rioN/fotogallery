@@ -6,20 +6,21 @@
 
 <script>
   export default {
+    data() {
+      return{
+        filmData: []
+      }
+    },
     async asyncData({params})  {
       const slug = params.slug 
-      return { 
-        slug,
-         filmData: [],
-      }
+      return { slug }
       const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify( this.slug )
-    }
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify( this.slug )
+      }
       const res = await fetch("http://localhost:3000/api/actors/currentfilm", this.requestOptions);
-      const filmData = await res.json();
-      this.filmData = filmData;
+      filmData = await res.json();
     }
   }
 </script>
