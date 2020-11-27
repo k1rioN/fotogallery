@@ -16,9 +16,9 @@ const {
   Create
 } = q;
 
-module.exports = (req, res) => {
+module.exports = (req, res, {params}) => {
   client
-  .query(Get(Ref(Collection("films"), req.body.slug)))
+  .query(Get(Ref(Collection("films"), params.currentfilm)))
   .then(result => {
     res.status(200).send(result)
   })
