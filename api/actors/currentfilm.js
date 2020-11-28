@@ -18,7 +18,7 @@ const {
 
 module.exports = (req, res, {params}) => {
   client
-  .query(Get(Ref(Collection("films"), params.currentfilm)))
+  .query(Get(Ref(Collection("films"), req.params.id)))
   .then(result => {
     res.status(200).send(result)
   })

@@ -39,8 +39,8 @@ export default {
   build: {
       
   },
-  
+
   http: {
-    // proxyHeaders: false
+     proxyHeaders: false
   }
 }
