@@ -1,14 +1,26 @@
 <template>
   <div>
-  {{post}}
+    {{ films }}
   </div>
 </template>
 
 <script>
-  export default {
-    async asyncData({ params, $http }) {
-      const post = await $http.$get(`http://localhost:3000/api/actors/currentfilm/${params.slug}`)
-      return { post }
+import axios from 'axios'
+export default {
+  // eslint-disable-next-line require-await
+  async asyncData({ params }) {
+    const slug = params.slug
+    return {
+      slug,
+      films: [],
     }
-  }
+  },
+  async created() {
+    const response = await axios.post(
+      'http://localhost:3000/api/actors/current_film',
+      this.slug
+    )
+    this.films = response
+  },
+}
 </script>
